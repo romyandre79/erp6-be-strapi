@@ -643,7 +643,7 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
 export interface ApiCounttypeCounttype extends Struct.CollectionTypeSchema {
   collectionName: 'counttypes';
   info: {
-    displayName: 'Counttype';
+    displayName: 'Count Type';
     pluralName: 'counttypes';
     singularName: 'counttype';
   };
@@ -754,6 +754,76 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiGroupAccessGroupAccess extends Struct.CollectionTypeSchema {
+  collectionName: 'group_accesses';
+  info: {
+    displayName: 'Group Access';
+    pluralName: 'group-accesses';
+    singularName: 'group-access';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    groupname: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 30;
+      }>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::group-access.group-access'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    recordstatus: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGroupMenuGroupMenu extends Struct.CollectionTypeSchema {
+  collectionName: 'group_menus';
+  info: {
+    displayName: 'Group Menu';
+    pluralName: 'group-menus';
+    singularName: 'group-menu';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    groupaccess: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::group-access.group-access'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::group-menu.group-menu'
+    > &
+      Schema.Attribute.Private;
+    menuaccess: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::menu-access.menu-access'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLanguageLanguage extends Struct.CollectionTypeSchema {
   collectionName: 'languages';
   info: {
@@ -796,6 +866,169 @@ export interface ApiLanguageLanguage extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMenuAccessHistoryMenuAccessHistory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'menu_access_histories';
+  info: {
+    displayName: 'Menu Access History';
+    pluralName: 'menu-access-histories';
+    singularName: 'menu-access-history';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::menu-access-history.menu-access-history'
+    > &
+      Schema.Attribute.Private;
+    menu_access: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::menu-access.menu-access'
+    >;
+    menuform: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMenuAccessMenuAccess extends Struct.CollectionTypeSchema {
+  collectionName: 'menu_accesses';
+  info: {
+    displayName: 'Menu Access';
+    pluralName: 'menu-accesses';
+    singularName: 'menu-access';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::menu-access.menu-access'
+    >;
+    menu_type: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::menu-type.menu-type'
+    >;
+    menucode: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 3;
+      }>;
+    menuform: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    menuicon: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    menuname: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    menuurl: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    module: Schema.Attribute.Relation<'oneToOne', 'api::module.module'>;
+    parent: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::menu-access.menu-access'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    recordstatus: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    sortorder: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMenuTypeMenuType extends Struct.CollectionTypeSchema {
+  collectionName: 'menu_types';
+  info: {
+    displayName: 'Menu Type';
+    pluralName: 'menu-types';
+    singularName: 'menu-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::menu-type.menu-type'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiModuleModule extends Struct.CollectionTypeSchema {
   collectionName: 'modules';
   info: {
@@ -826,6 +1059,41 @@ export interface ApiModuleModule extends Struct.CollectionTypeSchema {
     recordstatus: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiParameterParameter extends Struct.CollectionTypeSchema {
+  collectionName: 'parameters';
+  info: {
+    displayName: 'Parameter';
+    pluralName: 'parameters';
+    singularName: 'parameter';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::parameter.parameter'
+    > &
+      Schema.Attribute.Private;
+    paramname: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 30;
+      }>;
+    paramvalue: Schema.Attribute.Text & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -877,7 +1145,7 @@ export interface ApiProvinceProvince extends Struct.CollectionTypeSchema {
 export interface ApiThemeTheme extends Struct.CollectionTypeSchema {
   collectionName: 'themes';
   info: {
-    displayName: 'theme';
+    displayName: 'Theme';
     pluralName: 'themes';
     singularName: 'theme';
   };
@@ -923,6 +1191,66 @@ export interface ApiThemeTheme extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiWidgetWidget extends Struct.CollectionTypeSchema {
+  collectionName: 'widgets';
+  info: {
+    displayName: 'Widget';
+    pluralName: 'widgets';
+    singularName: 'widget';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    installdate: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::widget.widget'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    recordstatus: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedate: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    widgetby: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    widgetname: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    widgettitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    widgeturl: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    widgetversion: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 3;
+      }>;
   };
 }
 
@@ -1444,10 +1772,17 @@ declare module '@strapi/strapi' {
       'api::counttype.counttype': ApiCounttypeCounttype;
       'api::currency.currency': ApiCurrencyCurrency;
       'api::global.global': ApiGlobalGlobal;
+      'api::group-access.group-access': ApiGroupAccessGroupAccess;
+      'api::group-menu.group-menu': ApiGroupMenuGroupMenu;
       'api::language.language': ApiLanguageLanguage;
+      'api::menu-access-history.menu-access-history': ApiMenuAccessHistoryMenuAccessHistory;
+      'api::menu-access.menu-access': ApiMenuAccessMenuAccess;
+      'api::menu-type.menu-type': ApiMenuTypeMenuType;
       'api::module.module': ApiModuleModule;
+      'api::parameter.parameter': ApiParameterParameter;
       'api::province.province': ApiProvinceProvince;
       'api::theme.theme': ApiThemeTheme;
+      'api::widget.widget': ApiWidgetWidget;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

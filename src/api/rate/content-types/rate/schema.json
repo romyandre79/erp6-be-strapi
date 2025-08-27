@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rates",
+  "info": {
+    "singularName": "rate",
+    "pluralName": "rates",
+    "displayName": "Rate"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "daterate": {
+      "type": "date",
+      "required": true,
+      "unique": true
+    },
+    "currency": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::currency.currency"
+    },
+    "taxrate": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "centralrate": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    }
+  }
+}

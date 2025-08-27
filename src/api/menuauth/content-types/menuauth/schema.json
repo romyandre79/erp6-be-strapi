@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "menuauths",
+  "info": {
+    "singularName": "menuauth",
+    "pluralName": "menuauths",
+    "displayName": "Menu Authentication Object"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "menuobject": {
+      "type": "string",
+      "maxLength": 30,
+      "required": true,
+      "unique": true
+    },
+    "recordstatus": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    }
+  }
+}

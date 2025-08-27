@@ -1,40 +1,45 @@
 {
   "kind": "collectionType",
-  "collectionName": "themes",
+  "collectionName": "widgets",
   "info": {
-    "singularName": "theme",
-    "pluralName": "themes",
-    "displayName": "Theme"
+    "singularName": "widget",
+    "pluralName": "widgets",
+    "displayName": "Widget"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "themename": {
+    "widgetname": {
       "type": "string",
-      "maxLength": 30,
       "required": true,
       "unique": true
     },
-    "description": {
+    "widgettitle": {
       "type": "string",
       "maxLength": 50,
       "required": true
     },
-    "isadmin": {
-      "type": "boolean",
-      "required": true,
-      "default": false
-    },
-    "createdby": {
-      "type": "string",
-      "maxLength": 50,
-      "required": true
-    },
-    "themeversion": {
+    "widgetversion": {
       "type": "string",
       "maxLength": 3,
+      "required": true
+    },
+    "widgetby": {
+      "type": "string",
+      "maxLength": 20,
+      "required": true,
+      "unique": false
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 100,
+      "required": true
+    },
+    "widgeturl": {
+      "type": "string",
+      "maxLength": 50,
       "required": true
     },
     "installdate": {
@@ -45,6 +50,10 @@
       "type": "boolean",
       "required": true,
       "default": true
+    },
+    "updatedate": {
+      "type": "datetime",
+      "required": true
     }
   }
 }

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "counttype",
     "pluralName": "counttypes",
-    "displayName": "Counttype"
+    "displayName": "Count Type"
   },
   "options": {
     "draftAndPublish": true

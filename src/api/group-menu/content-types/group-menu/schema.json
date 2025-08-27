@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "group_menus",
+  "info": {
+    "singularName": "group-menu",
+    "pluralName": "group-menus",
+    "displayName": "Group Menu"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "groupaccess": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::group-access.group-access"
+    },
+    "menuaccess": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::menu-access.menu-access"
+    },
+    "isread": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "iswrite": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "ispost": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "isreject": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "isupload": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "isdownload": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "ispurge": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  }
+}

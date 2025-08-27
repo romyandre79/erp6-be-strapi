@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "group_menu_auths",
+  "info": {
+    "singularName": "group-menu-auth",
+    "pluralName": "group-menu-auths",
+    "displayName": "Group Menu Auth"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "groupaccess": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::group-access.group-access"
+    },
+    "menuauth": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::menuauth.menuauth"
+    },
+    "menuvalueid": {
+      "type": "string"
+    }
+  }
+}
