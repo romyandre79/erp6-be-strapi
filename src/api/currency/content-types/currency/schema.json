@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "currencies",
+  "info": {
+    "singularName": "currency",
+    "pluralName": "currencies",
+    "displayName": "Currency"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "currencycode": {
+      "type": "string",
+      "maxLength": 5,
+      "required": true,
+      "unique": true
+    },
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "currencyname": {
+      "type": "string",
+      "maxLength": 30,
+      "required": true,
+      "unique": true
+    },
+    "symbol": {
+      "type": "string",
+      "maxLength": 5,
+      "required": true,
+      "unique": true
+    },
+    "recordstatus": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    }
+  }
+}

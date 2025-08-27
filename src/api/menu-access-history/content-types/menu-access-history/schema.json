@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "menu_access_histories",
+  "info": {
+    "singularName": "menu-access-history",
+    "pluralName": "menu-access-histories",
+    "displayName": "Menu Access History"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "menu_access": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::menu-access.menu-access"
+    },
+    "menuform": {
+      "type": "text"
+    }
+  }
+}

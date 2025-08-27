@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cities",
+  "info": {
+    "singularName": "city",
+    "pluralName": "cities",
+    "displayName": "City"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "citycode": {
+      "type": "string",
+      "maxLength": 5,
+      "required": true,
+      "unique": true
+    },
+    "province": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::province.province"
+    },
+    "cityname": {
+      "type": "string",
+      "maxLength": 30,
+      "required": true,
+      "unique": true
+    },
+    "recordstatus": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    }
+  }
+}

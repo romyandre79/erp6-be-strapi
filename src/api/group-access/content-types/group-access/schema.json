@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "group_accesses",
+  "info": {
+    "singularName": "group-access",
+    "pluralName": "group-accesses",
+    "displayName": "Group Access"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "groupname": {
+      "type": "string",
+      "maxLength": 30,
+      "required": true
+    },
+    "recordstatus": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    }
+  }
+}

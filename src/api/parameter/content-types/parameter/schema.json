@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parameters",
+  "info": {
+    "singularName": "parameter",
+    "pluralName": "parameters",
+    "displayName": "Parameter"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "paramname": {
+      "type": "string",
+      "maxLength": 30,
+      "required": true,
+      "unique": true
+    },
+    "paramvalue": {
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

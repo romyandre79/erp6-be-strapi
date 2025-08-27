@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "menu_types",
+  "info": {
+    "singularName": "menu-type",
+    "pluralName": "menu-types",
+    "displayName": "Menu Type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

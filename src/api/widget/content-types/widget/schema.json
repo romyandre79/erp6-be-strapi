@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "widgets",
+  "info": {
+    "singularName": "widget",
+    "pluralName": "widgets",
+    "displayName": "Widget"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "widgetname": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "widgettitle": {
+      "type": "string",
+      "maxLength": 50,
+      "required": true
+    },
+    "widgetversion": {
+      "type": "string",
+      "maxLength": 3,
+      "required": true
+    },
+    "widgetby": {
+      "type": "string",
+      "maxLength": 20,
+      "required": true,
+      "unique": false
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 100,
+      "required": true
+    },
+    "widgeturl": {
+      "type": "string",
+      "maxLength": 50,
+      "required": true
+    },
+    "installdate": {
+      "type": "datetime",
+      "required": true
+    },
+    "recordstatus": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "updatedate": {
+      "type": "datetime",
+      "required": true
+    }
+  }
+}

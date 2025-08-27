@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "themes",
+  "info": {
+    "singularName": "theme",
+    "pluralName": "themes",
+    "displayName": "Theme"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "themename": {
+      "type": "string",
+      "maxLength": 30,
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 50,
+      "required": true
+    },
+    "isadmin": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "createdby": {
+      "type": "string",
+      "maxLength": 50,
+      "required": true
+    },
+    "themeversion": {
+      "type": "string",
+      "maxLength": 3,
+      "required": true
+    },
+    "installdate": {
+      "type": "datetime",
+      "required": true
+    },
+    "recordstatus": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    }
+  }
+}
