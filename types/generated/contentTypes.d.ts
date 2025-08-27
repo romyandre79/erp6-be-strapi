@@ -789,6 +789,40 @@ export interface ApiGroupAccessGroupAccess extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiGroupMenuAuthGroupMenuAuth
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'group_menu_auths';
+  info: {
+    displayName: 'Group Menu Auth';
+    pluralName: 'group-menu-auths';
+    singularName: 'group-menu-auth';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    groupaccess: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::group-access.group-access'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::group-menu-auth.group-menu-auth'
+    > &
+      Schema.Attribute.Private;
+    menuauth: Schema.Attribute.Relation<'oneToOne', 'api::menuauth.menuauth'>;
+    menuvalueid: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGroupMenuGroupMenu extends Struct.CollectionTypeSchema {
   collectionName: 'group_menus';
   info: {
@@ -807,6 +841,27 @@ export interface ApiGroupMenuGroupMenu extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::group-access.group-access'
     >;
+    isdownload: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    ispost: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    ispurge: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    isread: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    isreject: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    isupload: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    iswrite: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1029,6 +1084,42 @@ export interface ApiMenuTypeMenuType extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMenuauthMenuauth extends Struct.CollectionTypeSchema {
+  collectionName: 'menuauths';
+  info: {
+    displayName: 'Menu Authentication Object';
+    pluralName: 'menuauths';
+    singularName: 'menuauth';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::menuauth.menuauth'
+    > &
+      Schema.Attribute.Private;
+    menuobject: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 30;
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    recordstatus: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiModuleModule extends Struct.CollectionTypeSchema {
   collectionName: 'modules';
   info: {
@@ -1136,6 +1227,40 @@ export interface ApiProvinceProvince extends Struct.CollectionTypeSchema {
     recordstatus: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRateRate extends Struct.CollectionTypeSchema {
+  collectionName: 'rates';
+  info: {
+    displayName: 'Rate';
+    pluralName: 'rates';
+    singularName: 'rate';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    centralrate: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    currency: Schema.Attribute.Relation<'oneToOne', 'api::currency.currency'>;
+    daterate: Schema.Attribute.Date &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::rate.rate'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    taxrate: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1773,14 +1898,17 @@ declare module '@strapi/strapi' {
       'api::currency.currency': ApiCurrencyCurrency;
       'api::global.global': ApiGlobalGlobal;
       'api::group-access.group-access': ApiGroupAccessGroupAccess;
+      'api::group-menu-auth.group-menu-auth': ApiGroupMenuAuthGroupMenuAuth;
       'api::group-menu.group-menu': ApiGroupMenuGroupMenu;
       'api::language.language': ApiLanguageLanguage;
       'api::menu-access-history.menu-access-history': ApiMenuAccessHistoryMenuAccessHistory;
       'api::menu-access.menu-access': ApiMenuAccessMenuAccess;
       'api::menu-type.menu-type': ApiMenuTypeMenuType;
+      'api::menuauth.menuauth': ApiMenuauthMenuauth;
       'api::module.module': ApiModuleModule;
       'api::parameter.parameter': ApiParameterParameter;
       'api::province.province': ApiProvinceProvince;
+      'api::rate.rate': ApiRateRate;
       'api::theme.theme': ApiThemeTheme;
       'api::widget.widget': ApiWidgetWidget;
       'plugin::content-releases.release': PluginContentReleasesRelease;
