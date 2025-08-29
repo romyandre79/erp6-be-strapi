@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "component_detail_types",
+  "info": {
+    "singularName": "component-detail-type",
+    "pluralName": "component-detail-types",
+    "displayName": "Component Detail Type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "detailtype": {
+      "type": "string"
+    }
+  }
+}

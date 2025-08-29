@@ -17,6 +17,15 @@
       "required": true,
       "unique": true
     },
+    "description": {
+      "type": "string"
+    },
+    "createdby": {
+      "type": "string"
+    },
+    "moduleversion": {
+      "type": "string"
+    },
     "recordstatus": {
       "type": "boolean",
       "required": true,

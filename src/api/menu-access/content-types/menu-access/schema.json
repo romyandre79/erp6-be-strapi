@@ -86,15 +86,7 @@
         "images"
       ]
     },
-    "menuform": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "menu_type": {
+    "menutype": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::menu-type.menu-type"

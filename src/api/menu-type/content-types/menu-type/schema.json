@@ -10,5 +10,11 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "menutypename": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
 }

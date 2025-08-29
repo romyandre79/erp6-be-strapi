@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dashboards",
+  "info": {
+    "singularName": "dashboard",
+    "pluralName": "dashboards",
+    "displayName": "Dashboard"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "groupaccess": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::group-access.group-access"
+    },
+    "menuaccess": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::menu-access.menu-access"
+    },
+    "widget": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::widget.widget"
+    },
+    "sortorder": {
+      "type": "integer"
+    },
+    "dashgroup": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "components",
+  "info": {
+    "singularName": "component",
+    "pluralName": "components",
+    "displayName": "Component"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "componentname": {
+      "type": "string"
+    },
+    "componenttitle": {
+      "type": "string"
+    },
+    "componentcategory": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::component-category.component-category"
+    },
+    "componentclass": {
+      "type": "string"
+    },
+    "processinput": {
+      "type": "integer"
+    },
+    "processoutput": {
+      "type": "integer"
+    }
+  }
+}

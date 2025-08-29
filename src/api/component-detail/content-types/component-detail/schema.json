@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "component_details",
+  "info": {
+    "singularName": "component-detail",
+    "pluralName": "component-details",
+    "displayName": "Component Detail"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "componentrel": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::component.component"
+    },
+    "detailtype": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::component-detail-type.component-detail-type"
+    },
+    "componentlabel": {
+      "type": "string",
+      "required": true
+    },
+    "inputtype": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "textbox",
+        "combobox",
+        "textarea"
+      ]
+    },
+    "inputname": {
+      "type": "string",
+      "required": true
+    },
+    "inputdesc": {
+      "type": "string"
+    },
+    "sortorder": {
+      "type": "integer"
+    },
+    "datasourcetype": {
+      "type": "enumeration",
+      "enum": [
+        "list",
+        "db"
+      ]
+    },
+    "datasource": {
+      "type": "string"
+    },
+    "datasourceidfield": {
+      "type": "string"
+    },
+    "datasourcenamefield": {
+      "type": "string"
+    }
+  }
+}

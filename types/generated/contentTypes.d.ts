@@ -598,6 +598,148 @@ export interface ApiCityCity extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiComponentCategoryComponentCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'component_categories';
+  info: {
+    displayName: 'Component Category';
+    pluralName: 'component-categories';
+    singularName: 'component-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categoryname: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::component-category.component-category'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiComponentDetailTypeComponentDetailType
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'component_detail_types';
+  info: {
+    displayName: 'Component Detail Type';
+    pluralName: 'component-detail-types';
+    singularName: 'component-detail-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    detailtype: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::component-detail-type.component-detail-type'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiComponentDetailComponentDetail
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'component_details';
+  info: {
+    displayName: 'Component Detail';
+    pluralName: 'component-details';
+    singularName: 'component-detail';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    componentlabel: Schema.Attribute.String & Schema.Attribute.Required;
+    componentrel: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::component.component'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    datasource: Schema.Attribute.String;
+    datasourceidfield: Schema.Attribute.String;
+    datasourcenamefield: Schema.Attribute.String;
+    datasourcetype: Schema.Attribute.Enumeration<['list', 'db']>;
+    detailtype: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::component-detail-type.component-detail-type'
+    >;
+    inputdesc: Schema.Attribute.String;
+    inputname: Schema.Attribute.String & Schema.Attribute.Required;
+    inputtype: Schema.Attribute.Enumeration<
+      ['textbox', 'combobox', 'textarea']
+    > &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::component-detail.component-detail'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sortorder: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiComponentComponent extends Struct.CollectionTypeSchema {
+  collectionName: 'components';
+  info: {
+    displayName: 'Component';
+    pluralName: 'components';
+    singularName: 'component';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    componentcategory: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::component-category.component-category'
+    >;
+    componentclass: Schema.Attribute.String;
+    componentname: Schema.Attribute.String;
+    componenttitle: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::component.component'
+    > &
+      Schema.Attribute.Private;
+    processinput: Schema.Attribute.Integer;
+    processoutput: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
   collectionName: 'countries';
   info: {
@@ -719,6 +861,44 @@ export interface ApiCurrencyCurrency extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDashboardDashboard extends Struct.CollectionTypeSchema {
+  collectionName: 'dashboards';
+  info: {
+    displayName: 'Dashboard';
+    pluralName: 'dashboards';
+    singularName: 'dashboard';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dashgroup: Schema.Attribute.Integer;
+    groupaccess: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::group-access.group-access'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dashboard.dashboard'
+    > &
+      Schema.Attribute.Private;
+    menuaccess: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::menu-access.menu-access'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    sortorder: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    widget: Schema.Attribute.Relation<'oneToOne', 'api::widget.widget'>;
   };
 }
 
@@ -988,10 +1168,6 @@ export interface ApiMenuAccessMenuAccess extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::menu-access.menu-access'
     >;
-    menu_type: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::menu-type.menu-type'
-    >;
     menucode: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
@@ -1002,12 +1178,6 @@ export interface ApiMenuAccessMenuAccess extends Struct.CollectionTypeSchema {
       }> &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 3;
-      }>;
-    menuform: Schema.Attribute.Text &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
       }>;
     menuicon: Schema.Attribute.Media<'images'> &
       Schema.Attribute.SetPluginOptions<{
@@ -1026,6 +1196,7 @@ export interface ApiMenuAccessMenuAccess extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 20;
       }>;
+    menutype: Schema.Attribute.Relation<'oneToOne', 'api::menu-type.menu-type'>;
     menuurl: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1077,6 +1248,9 @@ export interface ApiMenuTypeMenuType extends Struct.CollectionTypeSchema {
       'api::menu-type.menu-type'
     > &
       Schema.Attribute.Private;
+    menutypename: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1132,8 +1306,10 @@ export interface ApiModuleModule extends Struct.CollectionTypeSchema {
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
+    createdby: Schema.Attribute.String;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1146,6 +1322,7 @@ export interface ApiModuleModule extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 30;
       }>;
+    moduleversion: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     recordstatus: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -1316,6 +1493,41 @@ export interface ApiThemeTheme extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUserGroupUserGroup extends Struct.CollectionTypeSchema {
+  collectionName: 'user_groups';
+  info: {
+    displayName: 'User Group';
+    pluralName: 'user-groups';
+    singularName: 'user-group';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    groupaccess: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::group-access.group-access'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-group.user-group'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    useraccess: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -1512,6 +1724,159 @@ export interface PluginI18NLocale extends Struct.CollectionTypeSchema {
         number
       >;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginNavigationAudience extends Struct.CollectionTypeSchema {
+  collectionName: 'audience';
+  info: {
+    displayName: 'Audience';
+    name: 'audience';
+    pluralName: 'audiences';
+    singularName: 'audience';
+  };
+  options: {
+    comment: 'Audience';
+    draftAndPublish: false;
+    increments: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    key: Schema.Attribute.UID<'name'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::navigation.audience'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginNavigationNavigation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'navigations';
+  info: {
+    displayName: 'Navigation';
+    name: 'navigation';
+    pluralName: 'navigations';
+    singularName: 'navigation';
+  };
+  options: {
+    comment: '';
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    items: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::navigation.navigation-item'
+    >;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::navigation.navigation'
+    >;
+    name: Schema.Attribute.Text & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface PluginNavigationNavigationItem
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'navigations_items';
+  info: {
+    displayName: 'Navigation Item';
+    name: 'navigation-item';
+    pluralName: 'navigation-items';
+    singularName: 'navigation-item';
+  };
+  options: {
+    comment: 'Navigation Item';
+    draftAndPublish: false;
+    increments: true;
+    timestamps: true;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+    i18n: {
+      localized: false;
+    };
+  };
+  attributes: {
+    additionalFields: Schema.Attribute.JSON & Schema.Attribute.DefaultTo<{}>;
+    audience: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::navigation.audience'
+    >;
+    autoSync: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    collapsed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    externalPath: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::navigation.navigation-item'
+    > &
+      Schema.Attribute.Private;
+    master: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::navigation.navigation'
+    >;
+    menuAttached: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    parent: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::navigation.navigation-item'
+    >;
+    path: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    related: Schema.Attribute.Relation<'morphToMany'> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    type: Schema.Attribute.Enumeration<['INTERNAL', 'EXTERNAL', 'WRAPPER']> &
+      Schema.Attribute.DefaultTo<'INTERNAL'>;
+    uiRouterKey: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1893,9 +2258,14 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::city.city': ApiCityCity;
+      'api::component-category.component-category': ApiComponentCategoryComponentCategory;
+      'api::component-detail-type.component-detail-type': ApiComponentDetailTypeComponentDetailType;
+      'api::component-detail.component-detail': ApiComponentDetailComponentDetail;
+      'api::component.component': ApiComponentComponent;
       'api::country.country': ApiCountryCountry;
       'api::counttype.counttype': ApiCounttypeCounttype;
       'api::currency.currency': ApiCurrencyCurrency;
+      'api::dashboard.dashboard': ApiDashboardDashboard;
       'api::global.global': ApiGlobalGlobal;
       'api::group-access.group-access': ApiGroupAccessGroupAccess;
       'api::group-menu-auth.group-menu-auth': ApiGroupMenuAuthGroupMenuAuth;
@@ -1910,10 +2280,14 @@ declare module '@strapi/strapi' {
       'api::province.province': ApiProvinceProvince;
       'api::rate.rate': ApiRateRate;
       'api::theme.theme': ApiThemeTheme;
+      'api::user-group.user-group': ApiUserGroupUserGroup;
       'api::widget.widget': ApiWidgetWidget;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
+      'plugin::navigation.audience': PluginNavigationAudience;
+      'plugin::navigation.navigation': PluginNavigationNavigation;
+      'plugin::navigation.navigation-item': PluginNavigationNavigationItem;
       'plugin::review-workflows.workflow': PluginReviewWorkflowsWorkflow;
       'plugin::review-workflows.workflow-stage': PluginReviewWorkflowsWorkflowStage;
       'plugin::upload.file': PluginUploadFile;
