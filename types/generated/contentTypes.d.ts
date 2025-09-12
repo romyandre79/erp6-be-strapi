@@ -1444,6 +1444,37 @@ export interface ApiRateRate extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSystemFlowSystemFlow extends Struct.CollectionTypeSchema {
+  collectionName: 'system_flows';
+  info: {
+    displayName: 'System Flow';
+    pluralName: 'system-flows';
+    singularName: 'system-flow';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    flow: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::system-flow.system-flow'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    recordstatus: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiThemeTheme extends Struct.CollectionTypeSchema {
   collectionName: 'themes';
   info: {
@@ -2279,6 +2310,7 @@ declare module '@strapi/strapi' {
       'api::parameter.parameter': ApiParameterParameter;
       'api::province.province': ApiProvinceProvince;
       'api::rate.rate': ApiRateRate;
+      'api::system-flow.system-flow': ApiSystemFlowSystemFlow;
       'api::theme.theme': ApiThemeTheme;
       'api::user-group.user-group': ApiUserGroupUserGroup;
       'api::widget.widget': ApiWidgetWidget;

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "system_flows",
+  "info": {
+    "singularName": "system-flow",
+    "pluralName": "system-flows",
+    "displayName": "System Flow"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "flow": {
+      "type": "text"
+    },
+    "recordstatus": {
+      "type": "string"
+    }
+  }
+}
